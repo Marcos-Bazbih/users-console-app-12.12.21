@@ -34,9 +34,16 @@ namespace UsersConsoleApp
             set { this.email = value; }
         }
 
+        public User(string _FirstName, string _LastName, int _BirthYear, string _Email)
+        {
+            this.FirstName = _FirstName;
+            this.LastName = _LastName;
+            this.BirthYear = _BirthYear;
+            this.Email = _Email;
+        }
         public User() { }
 
-        public void PrintUserInfo()
+        public virtual void PrintUserInfo()
         {
             Console.WriteLine($"Name: {this.FirstName} {this.LastName} | Birth Year: {this.BirthYear} | Email: {this.Email}");
         }
