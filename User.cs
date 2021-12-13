@@ -43,7 +43,7 @@ namespace UsersConsoleApp
         }
         public User() { }
 
-        public virtual void PrintUserInfo()
+        protected virtual void PrintUserInfo()
         {
             Console.WriteLine($"Name: {this.FirstName} {this.LastName} | Birth Year: {this.BirthYear} | Email: {this.Email}");
         }

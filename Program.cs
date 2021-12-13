@@ -3,7 +3,6 @@
 List<User> usersList = new List<User>();
 
 
-
 //void GetFourUsers()
 //{
 
@@ -66,10 +65,6 @@ List<User> usersList = new List<User>();
 //}
 
 
-
-
-
-
 //void PrintUsersFromFile()
 //{
 //    FileStream PrintUsersFs = new FileStream(@"C:\STREAM\USERS\AllUsers.txt", FileMode.Open);
@@ -123,14 +118,26 @@ void UsersMenu()
 
 
             default:
-
+                Console.WriteLine("Please enter valid number");
+                UsersMenu();
                 break;
         }
 
     }
+    catch (FormatException)
+    {
+        Console.WriteLine("please enter the correct type of input");
+        UsersMenu();
+    }
+    catch(ArgumentException)
+    {
+        Console.WriteLine("please enter valid argument");
+        UsersMenu();
+    }
     catch (Exception ex)
     {
         Console.WriteLine(ex.Message);
+        UsersMenu();
     }
 }
 UsersMenu();
@@ -159,7 +166,6 @@ void AddUser()
     saveToAllUsers(userToAdd);
 }
 
-
 void SaveUserToFile(User user)
 {
     FileStream saveUserFs = new FileStream($@"C:\STREAM\USERS\{user.FirstName} {user.LastName}.txt", FileMode.Append);
@@ -168,7 +174,6 @@ void SaveUserToFile(User user)
         writer.WriteLine($"Name: {user.FirstName} {user.LastName} | Birth Year: {user.BirthYear} | Email: {user.Email}");
     }
 }
-
 
 void saveToAllUsers(User user)
 {
@@ -182,10 +187,11 @@ void saveToAllUsers(User user)
 
 
 
+
 //*******__2
 void EditUser()
 {
-    Console.WriteLine("Enter full name");
+    Console.WriteLine("Enter file name to edit");
     string fileName = Console.ReadLine();
 
     Console.WriteLine("Please Enter new information");
@@ -212,7 +218,9 @@ void EditUser()
         writer.WriteLine($"Name: {userToEdit.FirstName} {userToEdit.LastName} | Birth Year: {userToEdit.BirthYear} | Email: {userToEdit.Email}");
     }
 
+    Console.WriteLine($"{fileName} file has been updated");
 }
+
 
 
 
@@ -220,12 +228,12 @@ void EditUser()
 //*******__3
 void DeleteUserByName()
 {
-    Console.WriteLine("Enter full name");
+    Console.WriteLine("Enter file name to dalate");
     string fileName = Console.ReadLine();
-
-    FileStream PrintUserFs = new FileStream($@"C:\STREAM\USERS\{fileName}.txt", FileMode.Create);
-    PrintUserFs.Close();
+        
     File.Delete($@"C:\STREAM\USERS\{fileName}.txt");
+
+    Console.WriteLine($"{fileName} has been deleted");
 }
 
 
@@ -235,7 +243,7 @@ void DeleteUserByName()
 //*******__4
 void PrintUserByName()
 {
-    Console.WriteLine("Enter full name");
+    Console.WriteLine("Enter file name to display");
     string fileName = Console.ReadLine();
 
     FileStream PrintUserFs = new FileStream($@"C:\STREAM\USERS\{fileName}.txt", FileMode.Open);
@@ -244,8 +252,3 @@ void PrintUserByName()
         Console.WriteLine(reader.ReadToEnd());
     }
 }
-
-
-
-
-

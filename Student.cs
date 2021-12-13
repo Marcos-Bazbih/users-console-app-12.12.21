@@ -15,8 +15,8 @@ namespace UsersConsoleApp
         {
             this.grade = _grade;
         }
-
-        public override void PrintUserInfo()
+            
+        protected override void PrintUserInfo()
         {
             Console.WriteLine($"Name: {this.FirstName} {this.LastName} | Birth Year: {this.BirthYear} | Email: {this.Email} | Grade: {this.grade}");
 
